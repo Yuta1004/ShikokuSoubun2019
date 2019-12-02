@@ -1,5 +1,5 @@
 PYTHON = python3
-TARGET = test.json
+TARGET = $(wildcard *.json */*.json)
 
 
 run:
