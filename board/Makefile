@@ -1,6 +1,7 @@
 PYTHON = python3
-TARGET = $(wildcard *.json */*.json)
+TARGET_DIR = *
 
 
 run:
-	$(PYTHON) validator.py $(TARGET)
+	$(eval TARGET_FILES:=$(wildcard $(TARGET_DIR)/*.json))
+	$(PYTHON) validator.py $(TARGET_FILES)
