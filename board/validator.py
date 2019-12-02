@@ -1,12 +1,24 @@
 import sys
+import json
+
+
+def error(msg):
+    print(msg)
+    exit(1)
 
 
 def main():
+    # 引数検証
     if len(sys.argv) != 2:
-        print("Usage : python3 validator.py (JSONPATH)")
-        exit(0)
+        error("Usage : python3 validator.py (JSONPATH)")
 
-    print(sys.argv[1])
+    # JSON読み込み
+    board_json = None
+    try:
+        with open(sys.argv[1], "r", encoding="utf-8") as f:
+            board_json = json.loads(f.read())
+    except FileNotFoundError:
+        error("FileNotFound : "+sys.argv[1])
 
 
 if __name__ == '__main__':
