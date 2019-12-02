@@ -1,12 +1,19 @@
 import sys
 import json
 
+success_cnt = 0
+fail_cnt = 0
+
 
 def test_success(check_func):
+    global success_cnt
+    success_cnt += 1
     print("\033[32m\033[1mSuccess\033[0m : "+check_func.__name__)
 
 
 def test_fail(check_func):
+    global fail_cnt
+    fail_cnt += 1
     print("\033[31m\033[1mFailed\033[0m : "+check_func.__name__)
 
 
@@ -163,6 +170,12 @@ def main():
         test(check_actions, board_json)
         test(check_points_tiled, board_json)
         print()
+
+    # 結果表示
+    print("\033[1mResult\033[0m")
+    print("- \033[32m\033[1mSuccess : "+str(success_cnt)+"\033[0m")
+    print("- \033[31m\033[1mFail : "+str(fail_cnt)+"\033[0m")
+    exit(fail_cnt != 0)
 
 
 if __name__ == '__main__':
