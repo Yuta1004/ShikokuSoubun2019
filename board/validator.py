@@ -7,7 +7,7 @@ def error(msg):
     exit(1)
 
 
-def size_check(board_json):
+def check_size(board_json):
     width = board_json["width"]
     height = board_json["height"]
     tiled = board_json["tiled"]
@@ -37,7 +37,7 @@ def main():
         error("FileNotFound : "+sys.argv[1])
 
     # テスト
-    size_check(board_json)
+    check_size(board_json)
 
 
 if __name__ == '__main__':
