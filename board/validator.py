@@ -7,6 +7,7 @@ def error(msg):
     exit(1)
 
 
+# width, height
 def check_size(board_json):
     width = board_json["width"]
     height = board_json["height"]
@@ -21,6 +22,11 @@ def check_size(board_json):
     assert len(points) > 0
     assert len(points) == height
     assert len(points[0]) == width
+
+
+# startedAtUnixTime
+def check_start_time(board_json):
+    assert board_json["startedAtUnixTime"] == 0
 
 
 def main():
@@ -38,6 +44,7 @@ def main():
 
     # テスト
     check_size(board_json)
+    check_start_time(board_json)
 
 
 if __name__ == '__main__':
