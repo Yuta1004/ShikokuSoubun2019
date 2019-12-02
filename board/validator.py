@@ -3,11 +3,11 @@ import json
 
 
 def test_success(check_func):
-    print(check_func.__name__+" : Success!")
+    print("\033[32m\033[1mSuccess\033[0m : "+check_func.__name__)
 
 
 def test_fail(check_func):
-    print(check_func.__name__+" : Failed")
+    print("\033[31m\033[1mFailed\033[0m : "+check_func.__name__)
 
 
 def error(msg):
@@ -153,12 +153,14 @@ def main():
         error("FileNotFound : "+sys.argv[1])
 
     # テスト
+    print("\033[1m"+sys.argv[1]+"\033[0m")
     test(check_size, board_json)
     test(check_start_time, board_json)
     test(check_turn, board_json)
     test(check_teams, board_json)
     test(check_actions, board_json)
     test(check_points_tiled, board_json)
+    print()
 
 
 if __name__ == '__main__':
