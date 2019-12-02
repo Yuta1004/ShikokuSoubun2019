@@ -65,6 +65,57 @@ def check_teams(board_json):
     assert len(agent_ids) == len(agents)
 
 
+def check_points_tiled(board_json):
+    cnt = 0
+    tiled = board_json["tiled"]
+    tiled = __convert_tiled_flat(tiled)
+    points = board_json["points"]
+
+    cnt += (__check_symmetry_h(tiled) and __check_symmetry_h(points))
+    cnt += (__check_symmetry_v(tiled) and __check_symmetry_v(points))
+    cnt += (__check_symmetry_r(tiled) and __check_symmetry_r(points))
+    assert cnt > 0
+
+
+def __convert_tiled_flat(tiled):
+    new_tiled = []
+    for y in range(len(tiled)):
+        new_tiled.append([])
+        for x in range(len(tiled[y])):
+            new_tiled[y].append(1 if tiled[y][x] > 0 else 0)
+    return new_tiled
+
+
+def __check_symmetry_h(board):
+    result = True
+    width = len(board[0])
+    height = len(board)
+    for y in range(height):
+        for x in range(int(width/2+1)):
+            result &= (board[y][x] == board[y][width-x-1])
+    return result
+
+
+def __check_symmetry_v(board):
+    result = True
+    width = len(board[0])
+    height= len(board)
+    for y in range(int(height/2+1)):
+        for x in range(width):
+            result &= (board[y][x] == board[height-y-1][x])
+    return result
+
+
+def __check_symmetry_r(board):
+    result = True
+    width = len(board[0])
+    height = len(board)
+    for y in range(height):
+        for x in range(width):
+            result &= (board[y][x] == board[height-y-1][width-x-1])
+    return result
+
+
 def main():
     # 引数検証
     if len(sys.argv) != 2:
@@ -83,6 +134,7 @@ def main():
     check_start_time(board_json)
     check_turn(board_json)
     check_teams(board_json)
+    check_points_tiled(board_json)
 
 
 if __name__ == '__main__':
