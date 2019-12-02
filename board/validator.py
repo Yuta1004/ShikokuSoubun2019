@@ -65,6 +65,12 @@ def check_teams(board_json):
     assert len(agent_ids) == len(agents)
 
 
+# actions
+def check_actions(board_json):
+    assert len(board_json["actions"]) == 0
+
+
+# tiled, points
 def check_points_tiled(board_json):
     cnt = 0
     tiled = board_json["tiled"]
@@ -134,6 +140,7 @@ def main():
     check_start_time(board_json)
     check_turn(board_json)
     check_teams(board_json)
+    check_actions(board_json)
     check_points_tiled(board_json)
 
 
