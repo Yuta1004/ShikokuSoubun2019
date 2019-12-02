@@ -2,9 +2,26 @@ import sys
 import json
 
 
+def test_success(check_func):
+    print(check_func.__name__+" : Success!")
+
+
+def test_fail(check_func):
+    print(check_func.__name__+" : Failed")
+
+
 def error(msg):
     print(msg)
     exit(1)
+
+
+def test(check_func, board_json):
+    try:
+        check_func(board_json)
+    except AssertionError:
+        test_fail(check_func)
+    else:
+        test_success(check_func)
 
 
 # width, height
@@ -136,12 +153,12 @@ def main():
         error("FileNotFound : "+sys.argv[1])
 
     # テスト
-    check_size(board_json)
-    check_start_time(board_json)
-    check_turn(board_json)
-    check_teams(board_json)
-    check_actions(board_json)
-    check_points_tiled(board_json)
+    test(check_size, board_json)
+    test(check_start_time, board_json)
+    test(check_turn, board_json)
+    test(check_teams, board_json)
+    test(check_actions, board_json)
+    test(check_points_tiled, board_json)
 
 
 if __name__ == '__main__':
