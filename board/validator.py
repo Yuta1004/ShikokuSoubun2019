@@ -29,6 +29,11 @@ def check_start_time(board_json):
     assert board_json["startedAtUnixTime"] == 0
 
 
+# turn
+def check_turn(board_json):
+    assert board_json["turn"] == 0
+
+
 def main():
     # 引数検証
     if len(sys.argv) != 2:
@@ -45,6 +50,7 @@ def main():
     # テスト
     check_size(board_json)
     check_start_time(board_json)
+    check_turn(board_json)
 
 
 if __name__ == '__main__':
