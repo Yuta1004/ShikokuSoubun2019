@@ -25,7 +25,7 @@ make test TARGET_DIR=dir_name
 
 ### 必要盤面
 
-<table border="2" width="700" height="200">
+<table>
 <tr>
 <th>試合</th>
 <th>サイズ</th>
@@ -37,7 +37,7 @@ make test TARGET_DIR=dir_name
 <td>予選</td>
 <td>10 x 10</td>
 <td>3</td>
-<td>2つ</td>
+<td>2</td>
 <td></td>
 </tr>
 <tr>
@@ -63,7 +63,7 @@ make test TARGET_DIR=dir_name
 </tr>
 <tr>
 <td>決勝</td>
-<td>20x20</td>
+<td>20 x 20</td>
 <td>8</td>
 <td>2</td>
 <td>特徴的で盛り上がりそうな盤面</td>
