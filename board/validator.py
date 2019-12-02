@@ -38,6 +38,7 @@ def check_teams(board_json):
     teams = board_json["teams"]
     width = board_json["width"]
     height = board_json["height"]
+    tiled = board_json["tiled"]
 
     # ID
     if teams[0]["teamID"] == 2:
@@ -54,11 +55,13 @@ def check_teams(board_json):
     agents.extend(teams[0]["agents"])
     agents.extend(teams[1]["agents"])
     for agent in agents:
+        _id = agent["agentID"]
         x = agent["x"]
         y = agent["y"]
-        agent_ids.add(agent["agentID"])
+        agent_ids.add(_id)
         assert 1 <= x and x <= width
         assert 1 <= y and y <= height
+        assert tiled[y-1][x-1] == (_id>len(agents)/2)+1
     assert len(agent_ids) == len(agents)
 
 
