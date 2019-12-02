@@ -24,6 +24,14 @@ def test(check_func, board_json):
         test_success(check_func)
 
 
+def read_board_json(path):
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.loads(f.read())
+    except FileNotFoundError:
+        error("FileNotFound : "+path)
+
+
 # width, height
 def check_size(board_json):
     width = board_json["width"]
@@ -141,26 +149,20 @@ def __check_symmetry_r(board):
 
 def main():
     # 引数検証
-    if len(sys.argv) != 2:
+    if len(sys.argv) < 2:
         error("Usage : python3 validator.py (JSONPATH)")
 
-    # JSON読み込み
-    board_json = None
-    try:
-        with open(sys.argv[1], "r", encoding="utf-8") as f:
-            board_json = json.loads(f.read())
-    except FileNotFoundError:
-        error("FileNotFound : "+sys.argv[1])
-
-    # テスト
-    print("\033[1m"+sys.argv[1]+"\033[0m")
-    test(check_size, board_json)
-    test(check_start_time, board_json)
-    test(check_turn, board_json)
-    test(check_teams, board_json)
-    test(check_actions, board_json)
-    test(check_points_tiled, board_json)
-    print()
+    # テスト実行
+    for path in sys.argv[1:]:
+        print("\033[1m"+path+"\033[0m")
+        board_json = read_board_json(path)
+        test(check_size, board_json)
+        test(check_start_time, board_json)
+        test(check_turn, board_json)
+        test(check_teams, board_json)
+        test(check_actions, board_json)
+        test(check_points_tiled, board_json)
+        print()
 
 
 if __name__ == '__main__':
