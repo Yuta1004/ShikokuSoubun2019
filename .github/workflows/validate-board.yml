@@ -1,0 +1,13 @@
+name: Validate the Board
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Validate
+      run: cd board && make test PYTHON=python TARGET_DIR="*"
