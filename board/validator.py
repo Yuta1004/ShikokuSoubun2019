@@ -27,8 +27,12 @@ def error(msg):
 def test(check_func, board_json):
     try:
         check_func(board_json)
-    except AssertionError:
+    except AssertionError as aserr:
         test_fail(check_func)
+        print(aserr.args[0])
+    except Exception as excep:
+        test_fail(check_func)
+        print(excep.args[0])
     else:
         test_success(check_func)
 
@@ -48,24 +52,24 @@ def check_size(board_json):
     tiled = board_json["tiled"]
     points = board_json["points"]
 
-    assert 10 <= width and width <= 20
-    assert 10 <= height and height <= 20
-    assert len(tiled) > 0
-    assert len(tiled) == height
-    assert len(tiled[0]) == width
-    assert len(points) > 0
-    assert len(points) == height
-    assert len(points[0]) == width
+    assert 10 <= width and width <= 20 , "widthは10以上20以下である必要があります"
+    assert 10 <= height and height <= 20, "heightは10以上20以下である必要があります"
+    assert len(tiled) > 0, "tiledのサイズが不正です"
+    assert len(tiled) == height, "tiledの高さとheightが一致しません"
+    assert len(tiled[0]) == width, "tiledの幅とwidthが一致しません"
+    assert len(points) > 0, "pointsのサイズが不正です"
+    assert len(points) == height, "pointsの高さとheightが一致しません"
+    assert len(points[0]) == width, "pointsの高さとwidthが一致しません"
 
 
 # startedAtUnixTime
 def check_start_time(board_json):
-    assert board_json["startedAtUnixTime"] == 0
+    assert board_json["startedAtUnixTime"] == 0, "startedAtUnixTimeは0である必要があります"
 
 
 # turn
 def check_turn(board_json):
-    assert board_json["turn"] == 0
+    assert board_json["turn"] == 0, "turnは0である必要があります"
 
 # teams
 def check_teams(board_json):
@@ -79,9 +83,9 @@ def check_teams(board_json):
         tmp = teams[0]
         teams[0] = teams[1]
         teams[1] = tmp
-    assert teams[0]["teamID"] == 1
-    assert teams[1]["teamID"] == 2
-    assert len(teams[0]["agents"]) == len(teams[1]["agents"])
+    assert teams[0]["teamID"] == 1, "teamIDは1 or 2である必要があります"
+    assert teams[1]["teamID"] == 2, "teamIDは1 or 2である必要があります"
+    assert len(teams[0]["agents"]) == len(teams[1]["agents"]), "チーム1とチーム2のエージェント数が一致しません"
 
     # Agents
     agents = []
@@ -93,10 +97,9 @@ def check_teams(board_json):
         x = agent["x"]
         y = agent["y"]
         agent_ids.add(_id)
-        assert 1 <= x and x <= width
-        assert 1 <= y and y <= height
-        assert tiled[y-1][x-1] == (_id>len(agents)/2)+1
-    assert len(agent_ids) == len(agents)
+        assert 1 <= x and x <= width, "エージェントのx座標は1以上width以下である必要があります"
+        assert 1 <= y and y <= height, "エージェントのy座標は1以上height以下である必要があります"
+    assert len(agent_ids) == len(agents), "IDが重複しているエージェントが存在します"
 
 
 # tiled, teams
@@ -106,11 +109,11 @@ def check_agent_pos(board_json):
         for agent in board_json["teams"][team-1]["agents"]:
             x = agent["x"]-1
             y = agent["y"]-1
-            assert tiled[y][x] == team
+            assert tiled[y][x] == team, "エージェントの配置情報とtiledが一致しません => ("+str(x+1)+","+str(y+1)+")"
 
 # actions
 def check_actions(board_json):
-    assert len(board_json["actions"]) == 0
+    assert len(board_json["actions"]) == 0, "actionsは長さ0のリストである必要があります"
 
 
 # points(range)
@@ -120,7 +123,7 @@ def check_points_range(board_json):
     height = len(points)
     for y in range(height):
         for x in range(width):
-            assert -16 <= points[y][x] <= 16
+            assert -16 <= points[y][x] <= 16, "pointsの各要素は-16以上16以下である必要があります => ("+str(x+1)+","+str(y+1)+")"
 
 
 # tiled, points(symmetry)
@@ -133,7 +136,7 @@ def check_points_tiled_symmetry(board_json):
     cnt += (__check_symmetry_h(tiled) and __check_symmetry_h(points))
     cnt += (__check_symmetry_v(tiled) and __check_symmetry_v(points))
     cnt += (__check_symmetry_r(tiled) and __check_symmetry_r(points))
-    assert cnt > 0
+    assert cnt > 0, "points, tiledの配置は上下、左右、点のいずれかで対称である必要があります"
 
 
 def __convert_tiled_flat(tiled):
