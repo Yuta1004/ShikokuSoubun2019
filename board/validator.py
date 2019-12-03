@@ -104,6 +104,16 @@ def check_actions(board_json):
     assert len(board_json["actions"]) == 0
 
 
+# points(range)
+def check_points_range(board_json):
+    points = board_json["points"]
+    width = len(points[0])
+    height = len(points)
+    for y in range(height):
+        for x in range(width):
+            assert -16 <= points[y][x] <= 16
+
+
 # tiled, points(symmetry)
 def check_points_tiled_symmetry(board_json):
     cnt = 0
@@ -170,6 +180,7 @@ def main():
         test(check_turn, board_json)
         test(check_teams, board_json)
         test(check_actions, board_json)
+        test(check_points_range, board_json)
         test(check_points_tiled_symmetry, board_json)
         print()
 
