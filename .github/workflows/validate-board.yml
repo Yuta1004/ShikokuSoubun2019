@@ -14,5 +14,7 @@ jobs:
       with:
         version: '3.7'
         architecture: 'x64'
+    - name: Install Numpy 
+      run: pip3 install numpy
     - name: Validate
       run: cd board && make test PYTHON=python3 TARGET_DIR="*"
