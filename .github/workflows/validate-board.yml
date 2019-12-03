@@ -9,5 +9,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - name: Setup Python3
+      uses: actions/setup-python@v1
+      with:
+        version: '3.7'
+        architecture: 'x64'
     - name: Validate
-      run: cd board && make test PYTHON=python TARGET_DIR="*"
+      run: cd board && make test PYTHON=python3 TARGET_DIR="*"

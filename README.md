@@ -4,6 +4,8 @@
 
 ## Board
 
+![](https://github.com/Yuta1004/ShikokuSoubun2019/workflows/Validate%20the%20Board/badge.svg)
+
 ### コマンド
 
 ```
