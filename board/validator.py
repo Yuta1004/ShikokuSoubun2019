@@ -99,6 +99,15 @@ def check_teams(board_json):
     assert len(agent_ids) == len(agents)
 
 
+# tiled, teams
+def check_agent_pos(board_json):
+    tiled = board_json["tiled"]
+    for team in range(1, 3):
+        for agent in board_json["teams"][team-1]["agents"]:
+            x = agent["x"]-1
+            y = agent["y"]-1
+            assert tiled[y][x] == team
+
 # actions
 def check_actions(board_json):
     assert len(board_json["actions"]) == 0
@@ -179,6 +188,7 @@ def main():
         test(check_start_time, board_json)
         test(check_turn, board_json)
         test(check_teams, board_json)
+        test(check_agent_pos, board_json)
         test(check_actions, board_json)
         test(check_points_range, board_json)
         test(check_points_tiled_symmetry, board_json)
