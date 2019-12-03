@@ -2,6 +2,7 @@
 
 import sys
 import json
+from simulator import Game, Board
 
 success_cnt = 0
 fail_cnt = 0
@@ -116,6 +117,28 @@ def check_actions(board_json):
     assert len(board_json["actions"]) == 0, "actionsは長さ0のリストである必要があります"
 
 
+# init_score
+def check_init_score(board_json):
+    width = board_json["width"]
+    height = board_json["height"]
+    points = board_json["points"]
+    tiled = board_json["tiled"]
+    teams = [None, None, None]
+    teams[1] = board_json["teams"][0]
+    teams[2] = board_json["teams"][1]
+
+    board = Board(width, height, points, tiled)
+    agents = []
+    game = Game(board, agents)
+    score = game.cal_score([1, 2])
+
+    for team_id in range(1, 3):
+        assert teams[team_id]["tilePoint"] == score[team_id]["tilePoint"],\
+            "チーム"+str(team_id)+"のタイルポイントが不正です => tilePoints: "+str(score[team_id]["tilePoint"])
+        assert teams[team_id]["areaPoint"] == score[team_id]["areaPoint"],\
+            "チーム"+str(team_id)+"のエリアポイントが不正です => tilePoints: "+str(score[team_id]["areaPoint"])
+
+
 # points(range)
 def check_points_range(board_json):
     points = board_json["points"]
@@ -190,6 +213,7 @@ def main():
         test(check_size, board_json)
         test(check_start_time, board_json)
         test(check_turn, board_json)
+        test(check_init_score, board_json)
         test(check_teams, board_json)
         test(check_agent_pos, board_json)
         test(check_actions, board_json)
