@@ -49,14 +49,14 @@ make test TARGET_DIR=dir_name
 </tr>
 <tr>
 <td>準決勝</td>
-<td>15 x 15</td>
+<td>14 x 14</td>
 <td>5</td>
 <td>2</td>
 <td></td>
 </tr>
 <tr>
 <td>3位決定戦</td>
-<td>17 x 17</td>
+<td>18 x 18</td>
 <td>6</td>
 <td>2</td>
 <td>マイナスを密集させる、など難しい盤面</td>
