@@ -104,8 +104,8 @@ def check_actions(board_json):
     assert len(board_json["actions"]) == 0
 
 
-# tiled, points
-def check_points_tiled(board_json):
+# tiled, points(symmetry)
+def check_points_tiled_symmetry(board_json):
     cnt = 0
     tiled = board_json["tiled"]
     tiled = __convert_tiled_flat(tiled)
@@ -170,7 +170,7 @@ def main():
         test(check_turn, board_json)
         test(check_teams, board_json)
         test(check_actions, board_json)
-        test(check_points_tiled, board_json)
+        test(check_points_tiled_symmetry, board_json)
         print()
 
     # 結果表示
