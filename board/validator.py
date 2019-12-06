@@ -134,9 +134,9 @@ def check_init_score(board_json):
 
     for team_id in range(1, 3):
         assert teams[team_id]["tilePoint"] == score[team_id]["tilePoint"],\
-            "チーム"+str(team_id)+"のタイルポイントが不正です => tilePoints: "+str(score[team_id]["tilePoint"])
+            "チーム"+str(team_id)+"のタイルポイントが不正です => tilePoint: "+str(score[team_id]["tilePoint"])
         assert teams[team_id]["areaPoint"] == score[team_id]["areaPoint"],\
-            "チーム"+str(team_id)+"のエリアポイントが不正です => tilePoints: "+str(score[team_id]["areaPoint"])
+            "チーム"+str(team_id)+"のエリアポイントが不正です => areaPoint: "+str(score[team_id]["areaPoint"])
 
 
 # points(range)
