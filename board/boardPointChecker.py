@@ -1,12 +1,18 @@
 import sys
 import json
 
+def error(msg):
+    print(msg)
+    exit(1)
+
+
 def read_board_json(path):
     try:
         with open(path, "r", encoding="utf-8") as f:
             return json.loads(f.read())
     except FileNotFoundError:
         error("FileNotFound : "+path)
+
 
 def printboard():
     # 引数検証
