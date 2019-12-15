@@ -27,6 +27,9 @@ make test TARGET_DIR=dir_name
 
 ### 必要盤面
 
+**旧案**  
+ミニプロコン当日はサイズを合わせて良い感じにして使う
+
 <table>
 <tr>
 <th>試合</th>
