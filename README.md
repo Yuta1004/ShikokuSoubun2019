@@ -25,6 +25,59 @@ make test TARGET_DIR=dir_name
     - 競合を避けるため、管理者以外は他人のディレクトリ・ファイルを操作しないでください
 - 盤面JSONはofficial/内のものを参考に作成してください
 
+### 当日実際に使った盤面
+
+<table>
+    <tr>
+        <th>試合</th>
+        <th>サイズ</th>
+        <th>エージェント数</th>
+        <th>公開盤面</th>
+        <th>非公開盤面</th>
+        <th>備考</th>
+    </tr>
+    <tr>
+        <td>予行演習</td>
+        <td>10 x 10</td>
+        <td>3</td>
+        <td>official/A-1.json</td>
+        <td>official/A-1.json</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>予選</td>
+        <td>10 x 10</td>
+        <td>3</td>
+        <td>official/A-3.json</td>
+        <td>kishida/Qualifying1.json</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>エキシビション</td>
+        <td>10 x 10</td>
+        <td>3</td>
+        <td>official/A-2.json</td>
+        <td>MoriGod_maketile/yosenM.json</td>
+        <td>一番盛り上がった</td>
+    </tr>
+    <tr>
+        <td>3, 5位決定戦</td>
+        <td>14 x 14</td>
+        <td>5</td>
+        <td>official/C-2.json</td>
+        <td>kishida/SemiFinal2.json</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>決勝</td>
+        <td>20 x 20</td>
+        <td>8</td>
+        <td>official/F-1.json</td>
+        <td>kishida/Final1.json</td>
+        <td></td>
+    </tr>
+</table>
+
 ### 必要盤面
 
 **旧案**  
